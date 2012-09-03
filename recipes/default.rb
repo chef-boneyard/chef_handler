@@ -25,7 +25,7 @@ remote_directory node['chef_handler']['handler_path'] do
   # Just inherit permissions on Windows, don't try to set POSIX perms
   if node["platform"] != "windows"
     owner 'root'
-    group 'root'
+    group 0
     mode "0755"
     recursive true
   end

@@ -1,3 +1,6 @@
+## v1.0.8:
+
+* [COOK-1177] - doesn't work on windows due to use of unix specific attributes
 ## v1.0.6:
 
 * [COOK-1069] - typo in chef_handler readme

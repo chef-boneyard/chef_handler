@@ -37,7 +37,7 @@ action :enable do
       # to ensure daemonized Chef always has the latest
       # handler code.  TODO: add a :reload action
       Chef::Log.info("Enabling #{@new_resource} as a #{type} handler")
-      Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name}
+      Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name.split('::', 3).last}
       Chef::Config.send("#{type.to_s}_handlers") << handler
       new_resource.updated_by_last_action(true)
     end
@@ -48,7 +48,7 @@ action :disable do
   @new_resource.supports.each_key do |type|
     if enabled?(type)
       Chef::Log.info("Disabling #{@new_resource} as a #{type} handler")
-      Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name}
+      Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name.split('::', 3).last}
       new_resource.updated_by_last_action(true)
     end
   end

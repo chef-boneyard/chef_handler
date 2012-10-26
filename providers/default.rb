@@ -18,28 +18,35 @@
 # limitations under the License.
 #
 
+def whyrun_supported?
+  true
+end
+
 action :enable do
   # use load instead of require to ensure the handler file
   # is reloaded into memory each chef run. fixes COOK-620
-  begin
-    Object.send(:remove_const, klass)
-    GC.start
-  rescue
-    Chef::Log.debug("#{@new_resource.class_name} has not been loaded.")
+  converge_by("load #{@new_resource.source}") do
+     begin
+       Object.send(:remove_const, klass)
+       GC.start
+     rescue
+       Chef::Log.debug("#{@new_resource.class_name} has not been loaded.")
+     end
+     file_name = @new_resource.source
+     file_name << ".rb" unless file_name =~ /.*\.rb$/
+     load file_name
+     handler = klass.send(:new, *collect_args(@new_resource.arguments))
   end
-  file_name = @new_resource.source
-  file_name << ".rb" unless file_name =~ /.*\.rb$/
-  load file_name
-  handler = klass.send(:new, *collect_args(@new_resource.arguments))
   @new_resource.supports.each do |type, enable|
     if enable
       # we have to re-enable the handler every chef run
       # to ensure daemonized Chef always has the latest
       # handler code.  TODO: add a :reload action
-      Chef::Log.info("Enabling #{@new_resource} as a #{type} handler")
-      Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name.split('::', 3).last}
-      Chef::Config.send("#{type.to_s}_handlers") << handler
-      new_resource.updated_by_last_action(true)
+      converge_by("enable #{@new_resource} as a #{type} handler") do
+         Chef::Log.info("Enabling #{@new_resource} as a #{type} handler")
+         Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name.split('::', 3).last}
+         Chef::Config.send("#{type.to_s}_handlers") << handler
+      end
     end
   end
 end
@@ -47,9 +54,10 @@ end
 action :disable do
   @new_resource.supports.each_key do |type|
     if enabled?(type)
-      Chef::Log.info("Disabling #{@new_resource} as a #{type} handler")
-      Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name.split('::', 3).last}
-      new_resource.updated_by_last_action(true)
+      converge_by("disable #{@new_resource} as a #{type} handler") do
+         Chef::Log.info("Disabling #{@new_resource} as a #{type} handler")
+         Chef::Config.send("#{type.to_s}_handlers").delete_if {|v| v.class.to_s.include? @new_resource.class_name.split('::', 3).last}
+      end
     end
   end
 end

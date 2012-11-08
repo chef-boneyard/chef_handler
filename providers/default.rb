@@ -25,6 +25,7 @@ end
 action :enable do
   # use load instead of require to ensure the handler file
   # is reloaded into memory each chef run. fixes COOK-620
+  handler = nil
   converge_by("load #{@new_resource.source}") do
      begin
        Object.send(:remove_const, klass)

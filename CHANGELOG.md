@@ -1,3 +1,7 @@
+## v1.1.2:
+
+* [COOK-1989] - fix scope for handler local variable to the enable block
+
 ## v1.1.0:
 
 * [COOK-1645] - properly delete old handlers

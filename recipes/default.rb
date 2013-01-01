@@ -31,4 +31,3 @@ remote_directory node['chef_handler']['handler_path'] do
   end
   action :nothing
 end.run_action(:create)
-

@@ -1,3 +1,7 @@
+## v1.1.4:
+
+* [COOK-2146] - style updates
+
 ## v1.1.2:
 
 * [COOK-1989] - fix scope for handler local variable to the enable block

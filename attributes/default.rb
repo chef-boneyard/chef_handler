@@ -28,3 +28,5 @@ else
 end
 
 default["chef_handler"]["handler_path"] = "#{File.expand_path(File.join(Chef::Config[:file_cache_path], '..'))}/handlers"
+
+default["chef_handler"]["handler_copy_path"] = File.join(Chef::Config[:file_cache_path], 'handlers_copy')

@@ -88,6 +88,6 @@ end
 
 def klass
   @klass ||= begin
-    @new_resource.class_name.split('::').inject(Kernel) { |scope, const_name| scope.const_get(const_name) }
+    @new_resource.class_name.split('::').inject(Kernel) { |scope, const_name| scope.const_get(const_name, scope === Kernel) }
   end
 end

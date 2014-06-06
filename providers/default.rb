@@ -92,6 +92,13 @@ def klass
     # first/uppermost namespace of the class, so we need
     # to enable the #const_get inherit paramenter only when
     # we are searching in Kernel scope (see COOK-4117).
-    @new_resource.class_name.split('::').inject(Kernel) { |scope, const_name| scope.const_get(const_name, scope === Kernel) }
+    klass_scopes = @new_resource.class_name.split('::')
+    klass_scopes.inject(Kernel) do |scope, const_name|
+      if RUBY_VERSION < '1.9'
+        scope.const_get(const_name)
+      else
+        scope.const_get(const_name, scope === Kernel)
+      end
+    end
   end
 end

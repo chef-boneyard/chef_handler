@@ -33,9 +33,12 @@ action :enable do
     rescue
       Chef::Log.debug("#{@new_resource.class_name} has not been loaded.")
     end
-    file_name = @new_resource.source
-    file_name << ".rb" unless file_name =~ /.*\.rb$/
-    load file_name
+    # if source defined — load gem
+    if @new_resource.source
+      file_name = @new_resource.source
+      file_name << ".rb" unless file_name =~ /.*\.rb$/
+      load file_name
+    end
     handler = klass.send(:new, *collect_args(@new_resource.arguments))
   end
   @new_resource.supports.each do |type, enable|

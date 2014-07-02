@@ -6,7 +6,7 @@ Creates a configured handler path for distributing [Chef report and exception ha
 Requirements
 ============
 
-* Ruby 1.9
+* Ruby >= 1.9
 
 Attributes
 ==========

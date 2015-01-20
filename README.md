@@ -32,6 +32,7 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
 
 ### Example
 
+```ruby
     # register the Chef::Handler::JsonFile handler
     # that ships with the Chef gem
     chef_handler "Chef::Handler::JsonFile" do
@@ -65,6 +66,7 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
       arguments [node['cloudkick']['oauth_key'], node['cloudkick']['oauth_secret']]
       action :enable
     end
+```
 
 
 Usage
@@ -82,6 +84,22 @@ json_file
 ---------
 
 Leverages the `chef_handler` LWRP to automatically register the `Chef::Handler::JsonFile` handler that ships as part of Chef. This handler serializes the run status data to a JSON file located at `/var/chef/reports`.
+
+
+Unit Testing
+==================
+
+chef_hanlder provides built in [chefspec](https://github.com/sethvargo/chefspec) matchers for assisting unit tests. These matchers will only be loaded if chefspec is already loaded. Following is an example of asserting aginst the jsonfile hanlder:
+
+
+```ruby
+  expect(runner).to enable_chef_handler("Chef::Handler::JsonFile").with(
+    source: "chef/handler/json_file",
+    arguments: { :path => '/var/chef/reports'},
+    supports: {:exception => true}
+    )
+  end
+```
 
 License and Author
 ==================

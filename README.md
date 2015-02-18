@@ -1,7 +1,7 @@
 Description
 ===========
 
-Creates a configured handler path for distributing [Chef report and exception handlers](http://docs.opscode.com/handlers.html).  Also exposes an LWRP for enabling Chef handlers from within recipe code (as opposed to hard coding in the client.rb file).  This is useful for cookbook authors who may want to ship a product specific handler (see the `cloudkick` cookbook for an example) with their cookbook.
+Creates a configured handler path for distributing [Chef report and exception handlers](http://docs.chef.io/handlers.html).  Also exposes an LWRP for enabling Chef handlers from within recipe code (as opposed to hard coding in the client.rb file).  This is useful for cookbook authors who may want to ship a product specific handler (see the `cloudkick` cookbook for an example) with their cookbook.
 
 Attributes
 ==========
@@ -78,7 +78,7 @@ default
 Put the recipe `chef_handler` at the start of the node's run list to make sure that custom handlers are dropped off early on in the Chef run and available for later recipes.
 
 For information on how to write report and exception handlers for Chef, please see the Chef wiki pages:
-http://wiki.opscode.com/display/chef/Exception+and+Report+Handlers
+http://wiki.chef.io/display/chef/Exception+and+Report+Handlers
 
 json_file
 ---------
@@ -104,9 +104,9 @@ chef_hanlder provides built in [chefspec](https://github.com/sethvargo/chefspec)
 License and Author
 ==================
 
-Author:: Seth Chisamore (<schisamo@opscode.com>)
+Author:: Seth Chisamore (<schisamo@chef.io>)
 
-Copyright:: 2011, Opscode, Inc
+Copyright:: 2011, Chef Software, Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

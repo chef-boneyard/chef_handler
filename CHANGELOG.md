@@ -1,6 +1,12 @@
 chef_handler cookbook CHANGELOG
 ===============================
 
+v1.1.7 (2015-05-14)
+-------------------
+Updated Contribution and Readme docs.
+Fix ChefSpec matchers.
+Allow handler to load classes when no source is provided.
+
 v1.1.6 (2014-04-09)
 -------------------
 [COOK-4494] - Add ChefSpec matchers

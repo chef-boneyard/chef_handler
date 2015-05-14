@@ -26,14 +26,16 @@ action :enable do
   # use load instead of require to ensure the handler file
   # is reloaded into memory each chef run. fixes COOK-620
   handler = nil
-  converge_by("load #{@new_resource.source}") do
+  converge_msg = "load #{@new_resource.class_name}"
+  converge_msg << " from #{@new_resource.source}"
+  converge_by(converge_msg) do
     begin
       Object.send(:remove_const, klass)
       GC.start
     rescue
       Chef::Log.debug("#{@new_resource.class_name} has not been loaded.")
     end
-    # if source defined — load gem
+    # if source defined - load gem
     if @new_resource.source
       file_name = @new_resource.source
       file_name << ".rb" unless file_name =~ /.*\.rb$/

@@ -1,7 +1,7 @@
 chef_handler cookbook CHANGELOG
 ===============================
 
-v1.1.7 (2015-05-14)
+v1.1.8 (2015-05-14)
 -------------------
 Updated Contribution and Readme docs.
 Fix ChefSpec matchers.

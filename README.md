@@ -33,7 +33,7 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
 - class_name: name attribute. The name of the handler class (can be module name-spaced).
 - source: full path to the handler file.  can also be a gem path if the handler ships as part of a Ruby gem.
 - arguments: an array of arguments to pass the handler's class initializer
-- supports: type of Chef Handler to register as, ie :report, :exception or both. default is `:report => true, :exception => true`
+- supports: type of Chef Handler to register as, i.e. :report, :exception or both. default is `:report => true, :exception => true`
 
 ### Example
 
@@ -94,7 +94,7 @@ Leverages the `chef_handler` LWRP to automatically register the `Chef::Handler::
 Unit Testing
 ==================
 
-chef_hanlder provides built in [chefspec](https://github.com/sethvargo/chefspec) matchers for assisting unit tests. These matchers will only be loaded if chefspec is already loaded. Following is an example of asserting aginst the jsonfile hanlder:
+chef_handler provides built in [chefspec](https://github.com/sethvargo/chefspec) matchers for assisting unit tests. These matchers will only be loaded if chefspec is already loaded. Following is an example of asserting against the jsonfile handler:
 
 
 ```ruby

@@ -1,29 +1,35 @@
-If you would like to contribute, please open a ticket in JIRA:
+## Quick-contribute
 
-* http://tickets.chef.io
+* Create an issue on the github [issue tracker](https://github.com/opscode-cookbooks/chef_handler/issues)
+* Link to your patch as a rebased git branch or pull request from the ticket
 
-Create the ticket in the COOK project and use the cookbook name as the
-component.
+## Contributor License Agreement
 
 For all code contributions, we ask that contributors sign a
 contributor license agreement (CLA). Instructions may be found here:
 
-* http://wiki.chef.io/display/chef/How+to+Contribute
+* https://supermarket.chef.io/become-a-contributor
+
+## Changelog and Readme files
 
 When contributing changes to individual cookbooks, please do not
 modify the version number in the metadata.rb. Also please do not
 update the CHANGELOG.md for a new version. Not all changes to a
-cookbook may be merged and released in the same versions. Chef Software will
+cookbook may be merged and released in the same versions. Chef will
 handle the version updates during the release process. You are welcome
 to correct typos or otherwise make updates to documentation in the
 README.
 
+## Workflow guidelines
+
 If a contribution adds new platforms or platform versions, indicate
-such in the body of the commit message(s), and update the relevant
-COOK ticket. When writing commit messages, it is helpful for others if
-you indicate the COOK ticket. For example:
+such in the body of the commit message(s), and mention it in the relevant
+pull request or github issue. When writing commit messages, it is helpful for others if
+you [indicate the Github issue number](https://help.github.com/articles/closing-issues-via-commit-messages/)
+in the message.
 
-    git commit -m '[COOK-1041] Updated pool resource to correctly delete.'
+    git commit -m 'Updated pool resource to correctly delete. Fixes #nn'
 
-In the ticket itself, it is also helpful if you include log output of
+On the issue itself, it is also helpful if you include log output of
 a successful Chef run, but this is not absolutely required.
+

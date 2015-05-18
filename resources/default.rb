@@ -20,8 +20,8 @@
 
 actions :enable, :disable
 
-attribute :class_name, :kind_of => String, :name_attribute => true
-attribute :source, :default => nil, :kind_of => String
+attribute :class_name, :kind_of => String, :name_attribute => true, :required => true
+attribute :source, :kind_of => String, :required => true
 attribute :arguments, :default => []
 attribute :supports, :kind_of => Hash, :default => { :report => true, :exception => true }
 

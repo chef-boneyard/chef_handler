@@ -18,9 +18,7 @@ require 'spec_helper'
 require_relative 'test_handler'
 
 describe ChefHandler::Helpers do
-  before do
-    extend ChefHandler::Helpers
-  end
+  include ChefHandler::Helpers
 
   let(:handler) { A::B::C.new }
   let(:handler_class_name) { 'A::B::C' }

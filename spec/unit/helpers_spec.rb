@@ -18,7 +18,12 @@ require 'spec_helper'
 require_relative 'test_handler'
 
 describe ChefHandler::Helpers do
+  before do
+    extend ChefHandler::Helpers
+  end
+
   let(:handler) { A::B::C.new }
+  let(:handler_class_name) { 'A::B::C' }
   let(:handler_type) { 'something' }
   let(:handler_method) { :something_handlers }
   let(:registered_handlers) { [] }
@@ -26,7 +31,7 @@ describe ChefHandler::Helpers do
   describe 'when invoking register_handler' do
     it 'adds the provided handler to Chef::Config' do
       allow(Chef::Config).to receive(handler_method).and_return(registered_handlers)
-      ChefHandler::Helpers::register_handler(handler_type, handler)
+      register_handler(handler_type, handler)
       expect(registered_handlers).to contain_exactly(handler)
     end
   end
@@ -36,38 +41,40 @@ describe ChefHandler::Helpers do
       let(:registered_handlers) { [handler] }
       it 'removes the registered handler in Chef::Config' do
         allow(Chef::Config).to receive(handler_method).and_return(registered_handlers)
-        ChefHandler::Helpers::unregister_handler(handler_type, handler)
+        unregister_handler(handler_type, handler_class_name)
         expect(registered_handlers).to contain_exactly()
       end
     end
 
     context 'with no previously registered class' do
+      let(:registered_handlers) { ['foobar'] }
       it 'removes the registered handler in Chef::Config' do
         allow(Chef::Config).to receive(handler_method).and_return(registered_handlers)
-        ChefHandler::Helpers::unregister_handler(handler_type, handler)
-        expect(registered_handlers).to contain_exactly()
+        unregister_handler(handler_type, handler_class_name)
+        expect(registered_handlers).to contain_exactly('foobar')
       end
     end
   end
 
   describe 'when invoking reload_class' do
+    let(:file_path) { File.join(File.dirname(__FILE__), file_name) }
     context 'with a previously loaded class' do
       let(:file_name) { 'test_handler.rb' }
 
       it 'unloads the existing class successfully' do
         old_handler_class = handler.class
-        new_handler_class = ChefHandler::Helpers::reload_class(old_handler_class.name, file_name)
-        expect(old_handler_class.name).to equal(new_handler_class.name)
+        new_handler_class = reload_class(old_handler_class.name, file_path)
+        expect(old_handler_class.name).to eq(new_handler_class.name)
         expect(old_handler_class).not_to equal(new_handler_class)
       end
     end
     context 'with no previously loaded class' do
       let(:file_name) { 'test_handler1.rb' }
-      let(:class_name) { 'D::E::F' }
+      let(:handler_class_name) { 'D::E::F' }
 
       it 'continues to load the new class successfully' do
-        new_handler_class = ChefHandler::Helpers::reload_class(class_name, file_name)
-        expect(new_handler_class.name).to equal(class_name)
+        new_handler_class = reload_class(handler_class_name, file_path)
+        expect(new_handler_class.name).to eq(handler_class_name)
       end
     end
   end

@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-include ChefHandler::Helpers
+include ::ChefHandler::Helpers
 
 def whyrun_supported?
   true
@@ -45,6 +45,7 @@ action :enable do
       end
     end
   end
+  handler = nil
   converge_by("load #{class_name} from #{new_resource.source}") do
     klass = reload_class(class_name, new_resource.source)
     handler = klass.send(:new, *collect_args(new_resource.arguments))

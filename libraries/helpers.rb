@@ -18,14 +18,14 @@ module ChefHandler
     def register_handler(handler_type, handler)
       # handler_type is a symbol such as :report or :exception.
       # handler is a freshly created object that is a Chef::Handler.
-      Chef::Log.info("Enabling #{handler.class.class.name} as a #{handler_type} handler.")
+      Chef::Log.info("Enabling #{handler.class.name} as a #{handler_type} handler.")
       Chef::Config.send("#{handler_type.to_s}_handlers") << handler
     end
 
     def unregister_handler(handler_type, class_full_name)
       # handler_type is a symbol such as :report or :exception.
       # class_full_name is a string such as 'Chef::Handler::ErrorReport'.
-      Chef::Log.info("Enabling #{class_full_name} as a #{handler_type} handler.")
+      Chef::Log.info("Disabling #{class_full_name} as a #{handler_type} handler.")
       Chef::Config.send("#{handler_type.to_s}_handlers").delete_if { |v| v.class.name == class_full_name }
     end
 

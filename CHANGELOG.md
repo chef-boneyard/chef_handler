@@ -1,6 +1,12 @@
 chef_handler cookbook CHANGELOG
 ===============================
 
+v1.1.9 (2015-05-26)
+-------------------
+Bugfixes from 1.1.8 - loading without source is not allowed again.
+Class unloading is performed more carefully.
+Tests for resource providers.
+
 v1.1.8 (2015-05-14)
 -------------------
 Updated Contribution and Readme docs.

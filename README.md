@@ -83,7 +83,7 @@ default
 Put the recipe `chef_handler` at the start of the node's run list to make sure that custom handlers are dropped off early on in the Chef run and available for later recipes.
 
 For information on how to write report and exception handlers for Chef, please see the Chef wiki pages:
-http://wiki.chef.io/display/chef/Exception+and+Report+Handlers
+https://docs.chef.io/handlers.html
 
 json_file
 ---------

@@ -7,7 +7,7 @@ Requirements
 ============
 
 * Ruby >= 1.9
-* Chef client >= 12
+* Chef >= 12
 
 Attributes
 ==========

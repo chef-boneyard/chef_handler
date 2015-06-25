@@ -53,36 +53,5 @@ module ChefHandler
       child = parent.const_get(class_name, parent === Kernel)
       return parent, child
     end
-
-    # Unloads a given class and reloads it from the file provided.
-    #
-    # @param class_full_name [String] full class name such as 'Chef::Handler::Foo'.  If a class
-    #   with that name currently exists, its definition is deleted from the enclosing module.
-    # @param file_name [String] full path to the ruby file to be loaded.  If path doesn't end with
-    #   .rb, that extension is appended.
-    # @return [Class] definition for the freshly loaded class.
-    def reload_class(class_full_name, file_name)
-      begin
-        parent, child = get_class(class_full_name)
-      rescue
-        Chef::Log.debug("#{class_full_name} was not previously loaded.")
-      end
-
-      if child then
-        class_name = class_full_name.split('::').last
-        child = nil
-        parent = Object if parent === Kernel
-        parent.send(:remove_const, class_name)
-        GC.start
-      end
-
-      # Use load instead of require because we need to explicitly avoid any caching that 'require'
-      # performs.  If the file has changed, we want to get the changes.
-      file_name << '.rb' unless file_name =~ /.*\.rb$/
-      load file_name
-
-      parent, child = get_class(class_full_name)
-      return child
-    end
   end
 end

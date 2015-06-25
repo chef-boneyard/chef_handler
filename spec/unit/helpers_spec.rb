@@ -53,27 +53,4 @@ describe ChefHandler::Helpers do
       end
     end
   end
-
-  describe 'when invoking reload_class' do
-    let(:file_path) { File.join(File.dirname(__FILE__), file_name) }
-    context 'with a previously loaded class' do
-      let(:file_name) { 'test_handler.rb' }
-
-      it 'unloads the existing class successfully' do
-        old_handler_class = handler.class
-        new_handler_class = reload_class(old_handler_class.name, file_path)
-        expect(old_handler_class.name).to eq(new_handler_class.name)
-        expect(old_handler_class).not_to equal(new_handler_class)
-      end
-    end
-    context 'with no previously loaded class' do
-      let(:file_name) { 'test_handler1.rb' }
-      let(:handler_class_name) { 'D::E::F' }
-
-      it 'continues to load the new class successfully' do
-        new_handler_class = reload_class(handler_class_name, file_path)
-        expect(new_handler_class.name).to eq(handler_class_name)
-      end
-    end
-  end
 end

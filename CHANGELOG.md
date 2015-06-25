@@ -1,6 +1,12 @@
 chef_handler cookbook CHANGELOG
 ===============================
 
+v1.2.0 (2015-06-25)
+-------------------
+Move to support Chef 12+ only.
+Removes old 'handler class reload' behavior - it isn't necessary
+  because chef-client forks and doesn't share a process between runs.
+
 v1.1.9 (2015-05-26)
 -------------------
 Bugfixes from 1.1.8 - loading without source is not allowed again.

@@ -7,6 +7,7 @@ Requirements
 ============
 
 * Ruby >= 1.9
+* Chef >= 12
 
 Attributes
 ==========

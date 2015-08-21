@@ -1,6 +1,9 @@
 chef_handler Cookbook
 =====================
 
+[![Build Status](https://travis-ci.org/opscode-cookbooks/chef_handler.svg?branch=master)](https://travis-ci.org/opscode-cookbooks/chef_handler)
+[![Cookbook Version](https://img.shields.io/cookbook/v/chef_handler.svg)](https://supermarket.chef.io/cookbooks/chef_handler)
+
 Creates a configured handler path for distributing [Chef report and exception handlers](http://docs.chef.io/handlers.html).  Also exposes an LWRP for enabling Chef handlers from within recipe code (as opposed to hard coding in the client.rb file).  This is useful for cookbook authors who may want to ship a product specific handler (see the `cloudkick` cookbook for an example) with their cookbook.
 
 Requirements

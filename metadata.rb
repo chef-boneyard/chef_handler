@@ -8,3 +8,6 @@ version          "1.2.0"
 
 recipe 'chef_handler', 'Deploys all handlers to the handler path early during the run.'
 recipe 'chef_handler::json_file', 'Enables Chef::Handler::JsonFile to serialize run status data to /var/chef/reports.'
+
+source_url 'https://github.com/opscode-cookbooks/chef_handler' if respond_to?(:source_url)
+issues_url 'https://github.com/opscode-cookbooks/chef_handler/issues' if respond_to?(:issues_url)

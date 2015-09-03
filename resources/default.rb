@@ -25,7 +25,7 @@ attribute :source, :default => nil, :kind_of => String
 attribute :arguments, :default => []
 attribute :supports, :kind_of => Hash, :default => { :report => true, :exception => true }
 
-# we have to set default for the supports attribute 
+# we have to set default for the supports attribute
 # in initializer since it is a 'reserved' attribute name
 def initialize(*args)
   super

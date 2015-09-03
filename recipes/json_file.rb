@@ -18,11 +18,11 @@
 # limitations under the License.
 #
 
-# force resource actions in compile phase so exception handler 
+# force resource actions in compile phase so exception handler
 # fires for compile phase exceptions
 
-chef_handler "Chef::Handler::JsonFile" do
-  source "chef/handler/json_file"
+chef_handler 'Chef::Handler::JsonFile' do
+  source 'chef/handler/json_file'
   arguments :path => '/var/chef/reports'
   action :nothing
 end.run_action(:enable)

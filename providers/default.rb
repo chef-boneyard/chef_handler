@@ -35,7 +35,7 @@ action :enable do
       end
     end
   end
-  
+
   handler = nil
   converge_by("load #{class_name} from #{new_resource.source}") do
     require new_resource.source
@@ -76,4 +76,3 @@ def collect_args(resource_args = [])
     [resource_args]
   end
 end
-

@@ -40,7 +40,7 @@ describe ChefHandler::Helpers do
       it 'removes the registered handler in Chef::Config' do
         allow(Chef::Config).to receive(handler_method).and_return(registered_handlers)
         unregister_handler(handler_type, handler_class_name)
-        expect(registered_handlers).to contain_exactly()
+        expect(registered_handlers).to contain_exactly
       end
     end
 

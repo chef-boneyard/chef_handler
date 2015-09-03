@@ -20,6 +20,11 @@
 
 actions :enable, :disable
 
+state_attrs :arguments,
+            :class_name,
+            :source,
+            :supports
+
 attribute :class_name, :kind_of => String, :name_attribute => true
 attribute :source, :default => nil, :kind_of => String
 attribute :arguments, :default => []

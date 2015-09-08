@@ -6,9 +6,7 @@ AlignParameters:
   Enabled: false
 Encoding:
   Enabled: false
-HashSyntax:
-  Enabled: false
 LineLength:
   Enabled: false
 MethodLength:
-  Max: 30
+  Enabled: false

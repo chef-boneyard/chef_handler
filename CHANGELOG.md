@@ -1,5 +1,6 @@
 chef_handler cookbook CHANGELOG
 ===============================
+This file is used to list changes made in each version of the chef_handler cookbook.
 
 v1.2.0 (2015-06-25)
 -------------------

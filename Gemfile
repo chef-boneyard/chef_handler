@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 group :lint do
   gem 'foodcritic', '~> 4.0'
   gem 'rubocop', '~> 0.33'
+  gem 'rake'
 end
 
 group :unit do
@@ -18,6 +19,7 @@ group :kitchen_vagrant do
   gem 'kitchen-vagrant', '~> 0.18'
 end
 
-group :development do
-  gem 'rake'
+group :kitchen_cloud do
+  gem 'kitchen-digitalocean'
+  gem 'kitchen-ec2'
 end

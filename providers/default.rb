@@ -29,10 +29,9 @@ end
 action :enable do
   class_name = new_resource.class_name
   new_resource.supports.each do |type, enable|
-    if enable
-      converge_by("disable #{class_name} as a #{type} handler") do
-        unregister_handler(type, class_name)
-      end
+    next unless enable
+    converge_by("disable #{class_name} as a #{type} handler") do
+      unregister_handler(type, class_name)
     end
   end
 
@@ -44,10 +43,9 @@ action :enable do
   end
 
   new_resource.supports.each do |type, enable|
-    if enable
-      converge_by("enable #{new_resource} as a #{type} handler") do
-        register_handler(type, handler)
-      end
+    next unless enable
+    converge_by("enable #{new_resource} as a #{type} handler") do
+      register_handler(type, handler)
     end
   end
 end

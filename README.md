@@ -19,20 +19,20 @@ Creates a configured handler path for distributing [Chef report and exception ha
 `node["chef_handler"]["handler_path"]` - location to drop off handlers directory, default is `/var/chef/handlers`.
 
 ## Custom Resources
-### `chef_handler`
+### chef_handler
 Requires, configures and enables handlers on the node for the current Chef run.  Also has the ability to pass arguments to the handlers initializer.  This allows initialization data to be pulled from a node's attribute data.
 
 It is best to declare `chef_handler` resources early on in the compile phase so they are available to fire for any exceptions during the Chef run.  If you have a base role you would want any recipes that register Chef handlers to come first in the run_list.
 
 #### Actions
-- :enable: Enables the Chef handler for the current Chef run on the current node
-- :disable: Disables the Chef handler for the current Chef run on the current node
+- `:enable:` Enables the Chef handler for the current Chef run on the current node
+- `:disable:` Disables the Chef handler for the current Chef run on the current node
 
 #### Attribute Parameters
-- class_name: name attribute. The name of the handler class (can be module name-spaced).
-- source: full path to the handler file.  can also be a gem path if the handler ships as part of a Ruby gem.
-- arguments: an array of arguments to pass the handler's class initializer
-- supports: type of Chef Handler to register as, i.e. :report, :exception or both. default is `:report => true, :exception => true`
+- `class_name:` name attribute. The name of the handler class (can be module name-spaced).
+- `source:` full path to the handler file.  can also be a gem path if the handler ships as part of a Ruby gem.
+- `arguments:` an array of arguments to pass the handler's class initializer
+- `supports:` type of Chef Handler to register as, i.e. :report, :exception or both. default is `:report => true, :exception => true`
 
 #### Example
 

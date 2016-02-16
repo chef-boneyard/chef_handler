@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-Chef::Log.info("Chef Handlers will be at: #{node['chef_handler']['handler_path']}")
+Chef::Log.info("Chef Handlers will be located at: #{node['chef_handler']['handler_path']}")
 
 remote_directory node['chef_handler']['handler_path'] do
   source 'handlers'

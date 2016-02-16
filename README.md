@@ -16,7 +16,7 @@ Creates a configured handler path for distributing [Chef report and exception ha
 - none
 
 ## Attributes
-`node["chef_handler"]["handler_path"]` - location to drop off handlers directory, default is `/var/chef/handlers`.
+`node['chef_handler']['handler_path']` - location to drop off handlers directory, default is a folder named 'handlers' in Chef's file cache directory
 
 ## Custom Resources
 ### chef_handler

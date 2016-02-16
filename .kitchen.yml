@@ -14,7 +14,15 @@ platforms:
   - name: fedora-23
   - name: ubuntu-12.04
   - name: ubuntu-14.04
+  - name: windows-2008r2 # private Chef Software Inc. image
+    driver_config:
+      box: chef/windows-server-2008r2-standard
+  - name: windows-2012r2 # private Chef Software Inc. image
+    driver_config:
+      box: chef/windows-server-2012r2-standard
 
 suites:
-  - name: default
-    run_list: chef_handler::default
+  - name: json_file
+    run_list: chef_handler::json_file
+  - name: custom_resource
+    run_list: test::default

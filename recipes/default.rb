@@ -23,7 +23,7 @@ Chef::Log.info("Chef Handlers will be located at: #{node['chef_handler']['handle
 remote_directory node['chef_handler']['handler_path'] do
   source 'handlers'
   unless platform?('windows')
-    owner 'root'
+    owner node['root_user']
     mode '0755'
     recursive true
   end

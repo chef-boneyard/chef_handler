@@ -6,7 +6,7 @@ end
 
 chef_handler 'MyCorp::MyHandler' do
   source "#{node['chef_handler']['handler_path']}/my_handler.rb"
-  action [ :enable, :disable ]
+  action [:enable, :disable]
 end
 
 chef_handler 'MyCorp::MyLibraryHandler' do

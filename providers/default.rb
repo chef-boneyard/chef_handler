@@ -38,11 +38,15 @@ action :enable do
   end
 
   handler = nil
-  converge_by("load #{class_name} from #{new_resource.source}") do
-    require new_resource.source
-    _, klass = get_class(class_name)
-    handler = klass.send(:new, *collect_args(new_resource.arguments))
+
+  unless new_resource.source.nil?
+    converge_by("load #{class_name} from #{new_resource.source}") do
+      require new_resource.source
+    end
   end
+
+  _, klass = get_class(class_name)
+  handler = klass.send(:new, *collect_args(new_resource.arguments))
 
   new_resource.supports.each do |type, enable|
     next unless enable

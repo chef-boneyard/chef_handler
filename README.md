@@ -30,7 +30,7 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
 
 #### Attribute Parameters
 - `class_name:` name attribute. The name of the handler class (can be module name-spaced).
-- `source:` full path to the handler file.  can also be a gem path if the handler ships as part of a Ruby gem.
+- `source:` full path to the handler file.  can also be a gem path if the handler ships as part of a Ruby gem.  can also be nil, in which case the file must be loaded as a library.
 - `arguments:` an array of arguments to pass the handler's class initializer
 - `supports:` type of Chef Handler to register as, i.e. :report, :exception or both. default is `:report => true, :exception => true`
 
@@ -68,6 +68,12 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
     chef_handler "CloudkickHandler" do
       source "#{node['chef_handler']['handler_path']}/cloudkick_handler.rb"
       arguments [node['cloudkick']['oauth_key'], node['cloudkick']['oauth_secret']]
+      action :enable
+    end
+
+    # enable the MyCorp::MyLibraryHandler handler which was dropped off in a
+    # standard chef library file.
+    chef_handler "MyCorp::MyLibraryHandler" do
       action :enable
     end
 ```

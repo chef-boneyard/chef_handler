@@ -42,4 +42,4 @@ platforms:
 
 suites:
   - name: default
-    run_list: chef_handler::default
+    run_list: test::default

@@ -11,3 +11,5 @@ recipe 'chef_handler::json_file', 'Enables Chef::Handler::JsonFile to serialize 
 
 source_url 'https://github.com/chef-cookbooks/chef_handler' if respond_to?(:source_url)
 issues_url 'https://github.com/chef-cookbooks/chef_handler/issues' if respond_to?(:issues_url)
+
+chef_version '>= 11' if respond_to?(:chef_version)

@@ -10,7 +10,7 @@ Creates a configured handler path for distributing [Chef report and exception ha
 - Windows
 
 ### Chef
-- Chef 11+
+- Chef 12.1+
 
 ### Cookbooks
 - none

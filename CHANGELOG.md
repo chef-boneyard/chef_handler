@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 2.0.0 (2016-09-16)
+- Testing updates
+- Reuquire Chef 12.1
+
 ## v1.4.0 (2016-05-13)
 
 - Allow defining handlers in a cookbook libraries and then enabling them with the chef_handler resource without actually providing a file as a source. This simplifies the delivery of the handler file itself. See the readme for an example.

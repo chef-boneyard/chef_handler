@@ -4,7 +4,7 @@ This file is used to list changes made in each version of the chef_handler cookb
 
 ## 2.0.0 (2016-09-16)
 - Testing updates
-- Reuquire Chef 12.1
+- Require Chef 12.1
 
 ## v1.4.0 (2016-05-13)
 

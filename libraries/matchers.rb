@@ -19,14 +19,7 @@
 #
 
 if defined?(ChefSpec)
-  chefspec_version = Gem.loaded_specs['chefspec'].version
-  define_method = if chefspec_version < Gem::Version.new('4.1.0')
-                    ChefSpec::Runner.method(:define_runner_method)
-                  else
-                    ChefSpec.method(:define_matcher)
-                  end
-
-  define_method.call :chef_handler
+  ChefSpec.define_matcher :chef_handler
 
   def enable_chef_handler(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(:chef_handler, :enable, resource_name)

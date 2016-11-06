@@ -32,27 +32,25 @@ action :enable do
   class_name = new_resource.class_name
   new_resource.supports.each do |type, enable|
     next unless enable
-      unregister_handler(type, class_name)
+    unregister_handler(type, class_name)
   end
 
   handler = nil
 
-  unless new_resource.source.nil?
-      require new_resource.source
-  end
+  require new_resource.source unless new_resource.source.nil?
 
   _, klass = get_class(class_name)
   handler = klass.send(:new, *collect_args(new_resource.arguments))
 
   new_resource.supports.each do |type, enable|
     next unless enable
-      register_handler(type, handler)
+    register_handler(type, handler)
   end
 end
 
 action :disable do
   new_resource.supports.each_key do |type|
-      unregister_handler(type, new_resource.class_name)
+    unregister_handler(type, new_resource.class_name)
   end
 end
 

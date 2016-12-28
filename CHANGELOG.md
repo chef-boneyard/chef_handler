@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 2.1.0 (2016-12-27)
+
+- Support Chefspec 4.1+ matchers only
+- Yank out converge_by to avoid bogus resource updates
+
 ## 2.0.0 (2016-09-16)
 - Testing updates
 - Require Chef 12.1

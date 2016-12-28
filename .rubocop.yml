@@ -5,7 +5,7 @@ Style/CaseEquality:
     - 'libraries/helpers.rb'
 
 # Configuration parameters: Methods.
-# Methods: {"reduce"=>["a", "e"]}, {"inject"=>["a", "e"]}
+# Methods: {"reduce"=>["acc", "elem"]}, {"inject"=>["acc", "elem"]}
 Style/SingleLineBlockParams:
   Exclude:
     - 'libraries/helpers.rb'

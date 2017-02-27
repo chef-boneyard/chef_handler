@@ -15,6 +15,7 @@
 # limitations under the License.
 
 require 'chefspec'
+require 'chefspec/berkshelf'
 require_relative '../libraries/helpers'
 
 RSpec.configure do |config|

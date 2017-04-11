@@ -55,7 +55,7 @@ action :disable do
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::ChefHandler.new(new_resource.name)
+  @current_resource = Chef::Resource.resource_for_node(new_resource.declared_type, run_context.node).new(new_resource.name)
   @current_resource.class_name(new_resource.class_name)
   @current_resource.source(new_resource.source)
   @current_resource

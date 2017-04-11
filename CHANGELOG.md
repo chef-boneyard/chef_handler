@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 2.1.1 (2017-04-11)
+
+- Fixed Chef 13 compatibility
+- Add supported OS list to metadata
+
 ## 2.1.0 (2016-12-27)
 
 - Support Chefspec 4.1+ matchers only

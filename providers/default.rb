@@ -46,6 +46,7 @@ action :enable do
     next unless enable
     register_handler(type, handler)
   end
+  new_resource.updated_by_last_action(true)
 end
 
 action :disable do

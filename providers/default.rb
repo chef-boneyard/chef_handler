@@ -30,7 +30,7 @@ end
 # load that file.  It then instantiates that class by name and registers it as a handler.
 action :enable do
   class_name = new_resource.class_name
-  new_resource.supports.each do |type, enable|
+  new_resource.handler_type.each do |type, enable|
     next unless enable
     unregister_handler(type, class_name)
   end
@@ -42,14 +42,14 @@ action :enable do
   _, klass = get_class(class_name)
   handler = klass.send(:new, *collect_args(new_resource.arguments))
 
-  new_resource.supports.each do |type, enable|
+  new_resource.handler_type.each do |type, enable|
     next unless enable
     register_handler(type, handler)
   end
 end
 
 action :disable do
-  new_resource.supports.each_key do |type|
+  new_resource.handler_type.each_key do |type|
     unregister_handler(type, new_resource.class_name)
   end
 end

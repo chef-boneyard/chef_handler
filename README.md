@@ -1,7 +1,7 @@
 # chef_handler Cookbook
 [![Build Status](https://travis-ci.org/chef-cookbooks/chef_handler.svg?branch=master)](https://travis-ci.org/chef-cookbooks/chef_handler) [![Cookbook Version](https://img.shields.io/cookbook/v/chef_handler.svg)](https://supermarket.chef.io/cookbooks/chef_handler)
 
-Creates a configured handler path for distributing [Chef report and exception handlers](http://docs.chef.io/handlers.html).  Also exposes an LWRP for enabling Chef handlers from within recipe code (as opposed to hard coding in the client.rb file).  This is useful for cookbook authors who may want to ship a product specific handler (see the `cloudkick` cookbook for an example) with their cookbook.
+Creates a configured handler path for distributing [Chef report and exception handlers](http://docs.chef.io/handlers.html).  Also exposes an LWRP for enabling Chef handlers from within recipe code (as opposed to hard coding in the client.rb file).  
 
 ## Requirements
 ### Platforms
@@ -60,17 +60,6 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
       action :enable
     end
 
-
-    # enable the CloudkickHandler which was
-    # dropped off in the default handler path.
-    # passes the oauth key/secret to the handler's
-    # intializer.
-    chef_handler "CloudkickHandler" do
-      source "#{node['chef_handler']['handler_path']}/cloudkick_handler.rb"
-      arguments [node['cloudkick']['oauth_key'], node['cloudkick']['oauth_secret']]
-      action :enable
-    end
-
     # enable the MyCorp::MyLibraryHandler handler which was dropped off in a
     # standard chef library file.
     chef_handler "MyCorp::MyLibraryHandler" do
@@ -102,7 +91,7 @@ chef_handler provides built in [chefspec](https://github.com/sethvargo/chefspec)
 ## License & Authors
 **Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
 
-**Copyright:** 2011-2016, Chef Software, Inc.
+**Copyright:** 2011-2017, Chef Software, Inc.
 
 ```
 Licensed under the Apache License, Version 2.0 (the "License");

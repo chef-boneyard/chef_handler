@@ -32,7 +32,7 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
 - `class_name:` name attribute. The name of the handler class (can be module name-spaced).
 - `source:` full path to the handler file.  can also be a gem path if the handler ships as part of a Ruby gem.  can also be nil, in which case the file must be loaded as a library.
 - `arguments:` an array of arguments to pass the handler's class initializer
-- `supports:` type of Chef Handler to register as, i.e. :report, :exception or both. default is `:report => true, :exception => true`
+- `handler_type:` type of Chef Handler to register as, i.e. :report, :exception or both. default is `:report => true, :exception => true`
 
 #### Example
 
@@ -56,7 +56,7 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
     chef_handler "Chef::Handler::JsonFile" do
       source "chef/handler/json_file"
       arguments :path => '/var/chef/reports'
-      supports :exception => true
+      handler_type :exception => true
       action :enable
     end
 
@@ -83,7 +83,7 @@ chef_handler provides built in [chefspec](https://github.com/sethvargo/chefspec)
   expect(runner).to enable_chef_handler("Chef::Handler::JsonFile").with(
     source: "chef/handler/json_file",
     arguments: { :path => '/var/chef/reports'},
-    supports: {:exception => true}
+    handler_type: {:exception => true}
     )
   end
 ```
@@ -106,3 +106,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+

@@ -49,30 +49,30 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
 ```ruby
     # register the Chef::Handler::JsonFile handler
     # that ships with the Chef gem
-    chef_handler "Chef::Handler::JsonFile" do
-      source "chef/handler/json_file"
-      arguments :path => '/var/chef/reports'
+    chef_handler 'Chef::Handler::JsonFile' do
+      source 'chef/handler/json_file'
+      arguments path: '/var/chef/reports'
       action :enable
     end
 
     # do the same but during the compile phase
-    chef_handler "Chef::Handler::JsonFile" do
-      source "chef/handler/json_file"
-      arguments :path => '/var/chef/reports'
+    chef_handler 'Chef::Handler::JsonFile' do
+      source 'chef/handler/json_file'
+      arguments path: '/var/chef/reports'
       action :nothing
     end.run_action(:enable)
 
     # handle exceptions only
-    chef_handler "Chef::Handler::JsonFile" do
-      source "chef/handler/json_file"
-      arguments :path => '/var/chef/reports'
-      supports :exception => true
+    chef_handler 'Chef::Handler::JsonFile' do
+      source 'chef/handler/json_file'
+      arguments path: '/var/chef/reports'
+      supports exception: true
       action :enable
     end
 
     # enable the MyCorp::MyLibraryHandler handler which was dropped off in a
     # standard chef library file.
-    chef_handler "MyCorp::MyLibraryHandler" do
+    chef_handler 'MyCorp::MyLibraryHandler' do
       action :enable
     end
 ```
@@ -94,12 +94,11 @@ Leverages the `chef_handler` LWRP to automatically register the `Chef::Handler::
 chef_handler provides built in [chefspec](https://github.com/sethvargo/chefspec) matchers for assisting unit tests. These matchers will only be loaded if chefspec is already loaded. Following is an example of asserting against the jsonfile handler:
 
 ```ruby
-  expect(runner).to enable_chef_handler("Chef::Handler::JsonFile").with(
-    source: "chef/handler/json_file",
-    arguments: { :path => '/var/chef/reports'},
-    supports: {:exception => true}
-    )
-  end
+  expect(runner).to enable_chef_handler('Chef::Handler::JsonFile').with(
+    source: 'chef/handler/json_file',
+    arguments: { path: '/var/chef/reports' },
+    supports: { exception: true }
+  )
 ```
 
 ## License & Authors

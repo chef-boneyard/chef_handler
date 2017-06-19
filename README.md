@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/chef-cookbooks/chef_handler.svg?branch=master)](https://travis-ci.org/chef-cookbooks/chef_handler) [![Cookbook Version](https://img.shields.io/cookbook/v/chef_handler.svg)](https://supermarket.chef.io/cookbooks/chef_handler)
 
-Creates a configured handler path for distributing [Chef report and exception handlers](http://docs.chef.io/handlers.html). Also exposes an LWRP for enabling Chef handlers from within recipe code (as opposed to hard coding in the client.rb file).
+Provides a resource for installing and automatically loading [Chef report and exception handlers](http://docs.chef.io/handlers.html).
 
 ## Requirements
 
@@ -24,7 +24,7 @@ Creates a configured handler path for distributing [Chef report and exception ha
 
 `node['chef_handler']['handler_path']` - location to drop off handlers directory, default is a folder named 'handlers' in Chef's file cache directory
 
-## Custom Resources
+## Resources
 
 ### chef_handler
 
@@ -47,43 +47,41 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
 #### Example
 
 ```ruby
-    # register the Chef::Handler::JsonFile handler
-    # that ships with the Chef gem
-    chef_handler 'Chef::Handler::JsonFile' do
-      source 'chef/handler/json_file'
-      arguments path: '/var/chef/reports'
-      action :enable
-    end
+  # register the Chef::Handler::JsonFile handler
+  # that ships with the Chef gem
+  chef_handler 'Chef::Handler::JsonFile' do
+    source 'chef/handler/json_file'
+    arguments path: '/var/chef/reports'
+    action :enable
+  end
 
-    # do the same but during the compile phase
-    chef_handler 'Chef::Handler::JsonFile' do
-      source 'chef/handler/json_file'
-      arguments path: '/var/chef/reports'
-      action :nothing
-    end.run_action(:enable)
+  # do the same but during the compile phase
+  chef_handler 'Chef::Handler::JsonFile' do
+    source 'chef/handler/json_file'
+    arguments path: '/var/chef/reports'
+    action :nothing
+  end.run_action(:enable)
 
-    # handle exceptions only
-    chef_handler 'Chef::Handler::JsonFile' do
-      source 'chef/handler/json_file'
-      arguments path: '/var/chef/reports'
-      supports exception: true
-      action :enable
-    end
+  # handle exceptions only
+  chef_handler 'Chef::Handler::JsonFile' do
+    source 'chef/handler/json_file'
+    arguments path: '/var/chef/reports'
+    supports exception: true
+    action :enable
+  end
 
-    # enable the MyCorp::MyLibraryHandler handler which was dropped off in a
-    # standard chef library file.
-    chef_handler 'MyCorp::MyLibraryHandler' do
-      action :enable
-    end
+  # enable the MyCorp::MyLibraryHandler handler which was dropped off in a
+  # standard chef library file.
+  chef_handler 'MyCorp::MyLibraryHandler' do
+    action :enable
+  end
 ```
 
 ## Usage
 
 ### default
 
-Put the recipe `chef_handler` at the start of the node's run list to make sure that custom handlers are dropped off early on in the Chef run and available for later recipes.
-
-For information on how to write report and exception handlers for Chef, please see the Chef wiki pages: <https://docs.chef.io/handlers.html>
+This cookbook's default recipe has been deprecated. To setup your own handlers you should instead use the chef_handler resource documented above within your own cookbook to define handlers.
 
 ### json_file
 

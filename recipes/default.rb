@@ -18,15 +18,4 @@
 # limitations under the License.
 #
 
-Chef::Log.debug("Chef Handlers will be located at: #{node['chef_handler']['handler_path']}")
-
-remote_directory node['chef_handler']['handler_path'] do
-  source 'handlers'
-  unless platform?('windows')
-    owner 'root'
-    mode '0755'
-    recursive true
-  end
-  group node['root_group']
-  action :nothing
-end.run_action(:create)
+Chef::Log.warn("chef_handler::default recipe has been deprecated. Use the chef_handler resource instead to define handlers from your own wrapper cookbook.")

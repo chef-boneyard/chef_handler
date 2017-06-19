@@ -91,7 +91,7 @@ Leverages the `chef_handler` LWRP to automatically register the `Chef::Handler::
 
 ## Unit Testing
 
-chef_handler provides built in [chefspec](https://github.com/sethvargo/chefspec) matchers for assisting unit tests. These matchers will only be loaded if chefspec is already loaded. Following is an example of asserting against the jsonfile handler:
+chef_handler provides built in [chefspec](https://github.com/chefspec/chefspec) matchers for assisting unit tests. These matchers will only be loaded if ChefSpec is already loaded. Following is an example of asserting against the jsonfile handler:
 
 ```ruby
   expect(runner).to enable_chef_handler('Chef::Handler::JsonFile').with(

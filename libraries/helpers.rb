@@ -31,8 +31,12 @@ module ChefHandler
     # @param handler_type [Symbol] such as :report or :exception.
     # @param class_full_name [String] such as 'Chef::Handler::ErrorReport'.
     def unregister_handler(handler_type, class_full_name)
-      Chef::Log.info("Disabling #{class_full_name} as a #{handler_type} handler.")
-      Chef::Config.send("#{handler_type}_handlers").delete_if { |v| v.class.name == class_full_name }
+      Chef::Config.send("#{handler_type}_handlers").delete_if do |v|
+        if v.class.name == class_full_name
+          Chef::Log.info("Disabling #{class_full_name} as a #{handler_type} handler.")
+          true
+        end
+      end
     end
 
     # Walks down the namespace heirarchy to return the class object for the given class name.

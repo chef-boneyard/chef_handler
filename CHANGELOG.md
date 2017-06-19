@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 2.1.2 (2017-06-19)
+
+- Use a SPDX standard license string
+- Remove CloudkickHandler references from the readme
+- Use default_action in the resource to resolve FC074
+- Reduce handler location log level to debug
+
 ## 2.1.1 (2017-04-11)
 
 - Fixed Chef 13 compatibility

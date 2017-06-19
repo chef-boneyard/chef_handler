@@ -19,10 +19,18 @@ services: docker
 
 env:
   matrix:
-  - INSTANCE=default-ubuntu-1404
-  - INSTANCE=default-ubuntu-1604
-  - INSTANCE=default-centos-6
-  - INSTANCE=default-centos-7
+  - INSTANCE=resource-centos-6
+  - INSTANCE=resource-centos-6 CHEF_VERSION=12.20.3
+  - INSTANCE=resource-centos-7
+  - INSTANCE=resource-centos-7 CHEF_VERSION=12.20.3
+  - INSTANCE=resource-debian-7
+  - INSTANCE=resource-debian-7 CHEF_VERSION=12.20.3
+  - INSTANCE=resource-debian-8
+  - INSTANCE=resource-debian-8 CHEF_VERSION=12.20.3
+  - INSTANCE=resource-ubuntu-1404
+  - INSTANCE=resource-ubuntu-1404 CHEF_VERSION=12.20.3
+  - INSTANCE=resource-ubuntu-1604
+  - INSTANCE=resource-ubuntu-1604 CHEF_VERSION=12.20.3
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )

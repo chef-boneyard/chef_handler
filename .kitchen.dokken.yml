@@ -1,7 +1,7 @@
 driver:
   name: dokken
   privileged: true # because Docker and SystemD/Upstart
-  chef_version: current
+  chef_version: <%= ENV['CHEF_VERSION'] || "current" %>
 
 transport:
   name: dokken
@@ -71,8 +71,4 @@ platforms:
     image: opensuse:leap
     pid_one_command: /bin/systemd
     intermediate_instructions:
-      - RUN zypper --non-interactive install aaa_base perl-Getopt-Long-Descriptive which net-tools
-
-suites:
-  - name: default
-    run_list: test::default
+      - RUN zypper --non-interactive install aaa_base perl-Getopt-Long-Descriptive which net-tools systemd-sysvinit

@@ -18,22 +18,52 @@
 # limitations under the License.
 #
 
-actions :enable, :disable
-default_action :enable
+property :class_name, String, name_property: true
+property :source, String
+property :arguments, [Array, String], default: []
+property :type, Hash, default: { report: true, exception: true }
 
-state_attrs :arguments,
-            :class_name,
-            :source,
-            :supports
+# supports means a different thing in chef-land so we renamed it but
+# wanted to make sure we didn't break the world
+alias_method :supports, :type
 
-attribute :class_name, kind_of: String, name_attribute: true
-attribute :source, default: nil, kind_of: String
-attribute :arguments, default: []
-attribute :supports, kind_of: Hash, default: { report: true, exception: true }
+# This action needs to find an rb file that presumably contains the indicated class in it and the
+# load that file. It then instantiates that class by name and registers it as a handler.
+action :enable do
+  class_name = new_resource.class_name
+  new_resource.type.each do |type, enable|
+    next unless enable
 
-# we have to set default for the supports attribute
-# in initializer since it is a 'reserved' attribute name
-def initialize(*args)
-  super
-  @supports = { report: true, exception: true }
+    unregister_handler(type, class_name)
+  end
+
+  handler = nil
+
+  require new_resource.source unless new_resource.source.nil?
+
+  _, klass = get_class(class_name)
+  handler = klass.send(:new, *collect_args(new_resource.arguments))
+
+  new_resource.type.each do |type, enable|
+    next unless enable
+    register_handler(type, handler)
+  end
+end
+
+action :disable do
+  new_resource.type.each_key do |type|
+    unregister_handler(type, new_resource.class_name)
+  end
+end
+
+action_class do
+  include ChefHandler::Helpers
+
+  def collect_args(resource_args = [])
+    if resource_args.is_a? Array
+      resource_args
+    else
+      [resource_args]
+    end
+  end
 end

@@ -19,6 +19,7 @@
 #
 
 actions :enable, :disable
+default_action :enable
 
 state_attrs :arguments,
             :class_name,
@@ -34,6 +35,5 @@ attribute :supports, kind_of: Hash, default: { report: true, exception: true }
 # in initializer since it is a 'reserved' attribute name
 def initialize(*args)
   super
-  @action = :enable
   @supports = { report: true, exception: true }
 end

@@ -32,6 +32,7 @@ module ChefHandler
     # @param class_full_name [String] such as 'Chef::Handler::ErrorReport'.
     def unregister_handler(handler_type, class_full_name)
       Chef::Config.send("#{handler_type}_handlers").delete_if do |v|
+        # avoid a bit of log spam
         if v.class.name == class_full_name
           Chef::Log.info("Disabling #{class_full_name} as a #{handler_type} handler.")
           true

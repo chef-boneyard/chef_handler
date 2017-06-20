@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 3.0.0 (2017-06-20)
+
+- Remove the ability to install handlers via the files directory in this cookbook. This is a very old pattern that Chef (Opscode) pushed in ~2009/~2010 which required you to fork the cookbook so you could add your own files locally. There's a resource now and handlers should be installed using that resource.
+- Converted the handler LWRP to a custom resource, which makes Chef 12.7 the minimum version of chef-client supported
+- Converted the 'supports' property to a new property called 'type', which prevents deprecation warnings for Chef 12 users. Calls to the existing property will continue to work, but documentation now points to the new property.
+
 ## 2.1.2 (2017-06-19)
 
 - Use a SPDX standard license string

@@ -20,7 +20,7 @@
 
 property :class_name, String, name_property: true
 property :source, String
-property :arguments, [Array, String], default: []
+property :arguments, [Array, Hash], default: []
 property :type, Hash, default: { report: true, exception: true }
 
 # supports means a different thing in chef-land so we renamed it but

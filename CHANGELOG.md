@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 3.0.1 (2017-06-23)
+
+- Make sure arguments can be a hash not just an array
+
 ## 3.0.0 (2017-06-20)
 
 - Remove the ability to install handlers via the files directory in this cookbook. This is a very old pattern that Chef (Opscode) pushed in ~2009/~2010 which required you to fork the cookbook so you could add your own files locally. There's a resource now and handlers should be installed using that resource.

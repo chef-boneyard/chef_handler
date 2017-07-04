@@ -57,7 +57,7 @@ action :disable do
 end
 
 action_class do
-  include ChefHandler::Helpers
+  include ::ChefHandler::Helpers
 
   def collect_args(resource_args = [])
     if resource_args.is_a? Array

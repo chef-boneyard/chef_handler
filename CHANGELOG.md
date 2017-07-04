@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 3.0.2 (2017-07-04)
+
+- Fix namespace collision with helper module
+
 ## 3.0.1 (2017-06-23)
 
 - Make sure arguments can be a hash not just an array

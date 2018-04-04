@@ -4,6 +4,10 @@
 
 Provides a resource for installing and automatically loading [Chef report and exception handlers](http://docs.chef.io/handlers.html).
 
+## Deprecation
+
+The chef_handler resource from this cookbook is now shipping as part of Chef 14\. With the inclusion of this resource into Chef itself we are now deprecating this cookbook. It will continue to function for Chef 13 users, but will not be updated.
+
 ## Requirements
 
 ### Platforms
@@ -39,7 +43,7 @@ It is best to declare `chef_handler` resources early on in the compile phase so 
 
 #### Attribute Parameters
 
-- `class_name:` name attribute. The name of the handler class (can be module name-spaced).
+- `class_name:` name property. The name of the handler class (can be module name-spaced).
 - `source:` full path to the handler file. can also be a gem path if the handler ships as part of a Ruby gem. can also be nil, in which case the file must be loaded as a library.
 - `arguments:` an array of arguments to pass the handler's class initializer
 - `type:` type of Chef Handler to register as, i.e. :report, :exception or both. default is `:report => true, :exception => true`

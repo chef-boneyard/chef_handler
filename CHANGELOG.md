@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the chef_handler cookbook.
 
+## 3.0.3 (2018-04-04)
+
+- Add deprecation notice. The chef_handler resource is now included in Chef 14. This cookbook has been deprecated, but will continue to function for Chef 13 users.
+
 ## 3.0.2 (2017-07-04)
 
 - Fix namespace collision with helper module

@@ -4,7 +4,7 @@ maintainer_email 'cookbooks@chef.io'
 license 'Apache-2.0'
 description 'Distribute and enable Chef Exception and Report handlers'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '3.0.2'
+version '3.0.3'
 
 recipe 'chef_handler::json_file', 'Enables Chef::Handler::JsonFile to serialize run status data to /var/chef/reports.'
 
